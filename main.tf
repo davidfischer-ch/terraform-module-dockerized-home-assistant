@@ -24,6 +24,15 @@ resource "docker_container" "server" {
     read_only      = false
   }
 
+  dynamic "volumes" {
+    for_each = var.extra_volumes
+    content {
+      container_path = volumes.value.container_path
+      host_path      = volumes.value.host_path
+      read_only      = volumes.value.read_only
+    }
+  }
+
   /* TODO Setup log file mapping (later...) /config/home-assistant.log -> /logs/home-assistant.log
 
   volumes {

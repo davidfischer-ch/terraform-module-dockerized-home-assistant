@@ -33,3 +33,14 @@ variable "port" {
     error_message = "Having `port` different than 8123 is not yet implemented."
   }
 }
+
+# Storage
+
+variable "extra_volumes" {
+  type = map(object({
+    container_path = string
+    host_path      = string
+    read_only      = bool
+  }))
+  default = {}
+}
