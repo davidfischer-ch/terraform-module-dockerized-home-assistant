@@ -22,20 +22,6 @@ variable "data_directory" {
   description = "Where data will be persisted (volumes will be mounted as sub-directories)."
 }
 
-# Daemon
-
-# Default is an historical value on my Intel NUC while deploying Home Assistant with Ansible
-
-variable "app_uid" {
-  type    = number
-  default = 997
-}
-
-variable "app_gid" {
-  type    = number
-  default = 997
-}
-
 # Networking
 
 variable "port" {

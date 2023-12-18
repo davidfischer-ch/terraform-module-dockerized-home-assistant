@@ -14,7 +14,9 @@ resource "docker_container" "server" {
 
   network_mode = "host"
 
-  user = linux_user.app.uid
+  env = [
+    "CONFIG_DIRECTORY '${local.container_config_directory}'"
+  ]
 
   volumes {
     container_path = local.container_config_directory
@@ -22,11 +24,11 @@ resource "docker_container" "server" {
     read_only      = false
   }
 
-  # Setup config directory
-  provisioner "local-exec" {
-    command = <<EOT
-      mkdir -p "${local.host_config_directory}"
-      chown "${linux_user.app.name}:${linux_group.app.name}" "${local.host_config_directory}"
-    EOT
-  }
+  /* TODO Setup log file mapping (later...) /config/home-assistant.log -> /logs/home-assistant.log
+
+  volumes {
+    container_path = local.container_log_filename
+    host_path      = local.host_log_filename
+    read_only      = false
+  } */
 }
