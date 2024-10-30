@@ -10,13 +10,21 @@ resource "docker_container" "server" {
 
   # shm_size = 256 # MB
 
-  hostname = var.identifier
-
-  network_mode = "host"
-
   env = [
     "CONFIG_DIRECTORY '${local.container_config_directory}'"
   ]
+
+  dynamic "host" {
+    for_each = var.hosts
+    content {
+      host = host.key
+      ip   = host.value
+    }
+  }
+
+  hostname = var.identifier
+
+  network_mode = "host"
 
   volumes {
     container_path = local.container_config_directory
