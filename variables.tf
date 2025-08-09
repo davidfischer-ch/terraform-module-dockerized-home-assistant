@@ -33,6 +33,12 @@ variable "extra_devices" {
   default = {}
 }
 
+variable "extra_groups" {
+  description = "Additional groups for the container user."
+  type        = set(string)
+  default     = []
+}
+
 # Networking ---------------------------------------------------------------------------------------
 
 variable "hosts" {

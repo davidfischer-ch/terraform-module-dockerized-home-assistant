@@ -14,6 +14,8 @@ resource "docker_container" "server" {
     "CONFIG_DIRECTORY '${local.container_config_directory}'"
   ]
 
+  group_add = var.extra_groups
+
   dynamic "host" {
     for_each = var.hosts
     content {
