@@ -26,6 +26,15 @@ resource "docker_container" "server" {
 
   network_mode = "host"
 
+  dynamic "devices" {
+    for_each = var.extra_devices
+    content {
+      container_path = volumes.value.container_path
+      host_path      = volumes.value.host_path
+      permissions    = volumes.value.permissions
+    }
+  }
+
   volumes {
     container_path = local.container_config_directory
     host_path      = local.host_config_directory

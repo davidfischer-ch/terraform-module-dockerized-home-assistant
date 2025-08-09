@@ -22,6 +22,17 @@ variable "data_directory" {
   description = "Where data will be persisted (volumes will be mounted as sub-directories)."
 }
 
+# Devices ------------------------------------------------------------------------------------------
+
+variable "extra_devices" {
+  type = map(object({
+    container_path = string
+    host_path      = string
+    permissions    = string
+  }))
+  default = {}
+}
+
 # Networking ---------------------------------------------------------------------------------------
 
 variable "hosts" {
