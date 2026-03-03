@@ -12,7 +12,7 @@ See [examples/default](examples/default) for a complete working configuration.
 
 ```hcl
 module "home_assistant" {
-  source = "git::https://github.com/davidfischer-ch/terraform-module-dockerized-home-assistant.git?ref=1.0.0"
+  source = "git::https://github.com/davidfischer-ch/terraform-module-dockerized-home-assistant.git?ref=1.0.1"
 
   identifier     = "home-assistant"
   enabled        = true
