@@ -17,11 +17,6 @@ variable "image_id" {
   description = "Home Assistant image's ID."
 }
 
-variable "data_directory" {
-  type        = string
-  description = "Where data will be persisted (volumes will be mounted as sub-directories)."
-}
-
 # Devices ------------------------------------------------------------------------------------------
 
 variable "extra_devices" {
@@ -58,6 +53,11 @@ variable "port" {
 }
 
 # Storage ------------------------------------------------------------------------------------------
+
+variable "data_directory" {
+  type        = string
+  description = "Where data will be persisted (volumes will be mounted as sub-directories)."
+}
 
 variable "extra_volumes" {
   type = map(object({
