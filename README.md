@@ -12,10 +12,12 @@ See [examples/default](examples/default) for a complete working configuration.
 
 ```hcl
 module "home_assistant" {
-  source = "git::https://github.com/davidfischer-ch/terraform-module-dockerized-home-assistant.git?ref=1.0.2"
+  source = "git::https://github.com/davidfischer-ch/terraform-module-dockerized-home-assistant.git?ref=1.0.3"
 
   identifier = "home-assistant"
   image_id   = docker_image.home_assistant.image_id
+
+  # Devices
 
   extra_devices = {
     zigbee_dongle = {
@@ -26,6 +28,8 @@ module "home_assistant" {
   }
 
   extra_groups = ["dialout"]
+
+  # Storage
 
   data_directory = "/data/home-assistant"
 }
