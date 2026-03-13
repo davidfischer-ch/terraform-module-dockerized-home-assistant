@@ -45,7 +45,7 @@ data_directory/
 | Name | Type | Default | Description |
 |------|------|---------|-------------|
 | `identifier` | `string` | — | Unique name for resources (must match `^[a-z]+(-[a-z0-9]+)*$`). |
-| `enabled` | `bool` | — | Start or stop the container. |
+| `enabled` | `bool` | `true` | Start or stop the container. |
 | `image_id` | `string` | — | [Home Assistant](https://hub.docker.com/r/homeassistant/home-assistant/tags) Docker image's ID. |
 | `data_directory` | `string` | — | Host path for persistent volumes. |
 | `extra_devices` | `map(object)` | `{}` | Devices to expose to the container. |
