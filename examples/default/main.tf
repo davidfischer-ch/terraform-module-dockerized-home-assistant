@@ -7,7 +7,6 @@ module "home_assistant" {
   source = "git::https://github.com/davidfischer-ch/terraform-module-dockerized-home-assistant.git?ref=1.0.1"
 
   identifier     = "home-assistant"
-  enabled        = true
   image_id       = docker_image.home_assistant.image_id
   data_directory = "/data/home-assistant"
 
