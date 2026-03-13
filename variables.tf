@@ -1,6 +1,7 @@
 variable "identifier" {
   type        = string
   description = "Identifier (must be unique, used to name resources)."
+
   validation {
     condition     = regex("^[a-z]+(-[a-z0-9]+)*$", var.identifier) != null
     error_message = "Argument `identifier` must match regex ^[a-z]+(-[a-z0-9]+)*$."
@@ -9,8 +10,8 @@ variable "identifier" {
 
 variable "enabled" {
   type        = bool
-  default     = true
   description = "Toggle the containers (started or stopped)."
+  default     = true
 }
 
 variable "image_id" {
@@ -26,12 +27,13 @@ variable "extra_devices" {
     host_path      = string
     permissions    = string
   }))
-  default = {}
+  description = "Extra devices to expose to the container (e.g. USB, serial)."
+  default     = {}
 }
 
 variable "extra_groups" {
-  description = "Additional groups for the container user."
   type        = set(string)
+  description = "Additional groups for the container user."
   default     = []
 }
 
@@ -39,13 +41,14 @@ variable "extra_groups" {
 
 variable "hosts" {
   type        = map(string)
-  default     = {}
   description = "Add entries to container hosts file."
+  default     = {}
 }
 
 variable "port" {
-  type    = number
-  default = 8123
+  type        = number
+  description = "Bind the Home Assistant HTTP port."
+  default     = 8123
 
   validation {
     condition     = var.port == 8123
@@ -62,9 +65,12 @@ variable "data_directory" {
 
 variable "extra_volumes" {
   type = map(object({
-    container_path = string
-    host_path      = string
-    read_only      = bool
+    container_path = optional(string)
+    from_container = optional(string)
+    host_path      = optional(string)
+    read_only      = optional(bool)
+    volume_name    = optional(string)
   }))
-  default = {}
+  description = "Extra volumes to mount in the container."
+  default     = {}
 }
