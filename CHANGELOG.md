@@ -1,5 +1,13 @@
 # Changelog
 
+## Release v1.0.2 (2026-03-13)
+
+### Fix and enhancements
+
+* Set `enabled` default to `true`
+* Refine variable descriptions, validators, and attribute ordering
+* Remove redundant default values from examples and README
+
 ## Release v1.0.1 (2026-03-03)
 
 ### Features
