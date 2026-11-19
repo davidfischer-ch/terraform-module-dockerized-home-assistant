@@ -11,7 +11,7 @@ resource "docker_container" "server" {
   # shm_size = 256 # MB
 
   env = [
-    "CONFIG_DIRECTORY '${local.container_config_directory}'"
+    "CONFIG_DIRECTORY=${var.container_config_directory}"
   ]
 
   group_add = var.extra_groups
@@ -38,7 +38,7 @@ resource "docker_container" "server" {
   }
 
   volumes {
-    container_path = local.container_config_directory
+    container_path = var.container_config_directory
     host_path      = local.host_config_directory
     read_only      = false
   }

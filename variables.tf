@@ -63,6 +63,15 @@ variable "data_directory" {
   description = "Where data will be persisted (volumes will be mounted as sub-directories)."
 }
 
+variable "container_config_directory" {
+  type        = string
+  description = <<-EOT
+    Where the configuration directory is mounted in the container, and passed as `CONFIG_DIRECTORY`.
+    The official image ignores `CONFIG_DIRECTORY` and reads `/config`.
+  EOT
+  default     = "/data/config"
+}
+
 variable "extra_volumes" {
   type = map(object({
     container_path = optional(string)

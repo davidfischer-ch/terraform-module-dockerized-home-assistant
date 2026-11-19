@@ -32,7 +32,8 @@ module "home_assistant" {
 
   # Storage
 
-  data_directory = "/data/home-assistant"
+  container_config_directory = "/config"
+  data_directory             = "/data/home-assistant"
 }
 ```
 
@@ -59,6 +60,7 @@ data_directory/
 | `hosts` | `map(string)` | `{}` | Extra `/etc/hosts` entries for the container. |
 | `port` | `number` | `8123` | Home Assistant port (changing not yet implemented). |
 | `data_directory` | `string` | — | Host path for persistent volumes. |
+| `container_config_directory` | `string` | `"/data/config"` | Where the configuration is mounted in the container and passed as `CONFIG_DIRECTORY`; `/config` for the official image, which reads no `CONFIG_DIRECTORY`. |
 | `extra_volumes` | `map(object)` | `{}` | Extra volumes to mount. |
 
 
@@ -74,6 +76,20 @@ data_directory/
 
 * Terraform >= 1.17
 * [kreuzwerker/docker](https://github.com/kreuzwerker/terraform-provider-docker) >= 4.7.0
+
+
+## Tests
+
+```bash
+terraform init -backend=false
+terraform test
+```
+
+`terraform test` needs Terraform >= 1.17, the module's own floor. The tests plan against a mocked
+Docker provider: they assert what the module passes to Docker (the env and the mounts) and its
+outputs, and run no image. They run on every push, in the GitHub workflow (with the newest Docker
+provider and its minimum) and in the GitLab pipeline.
+
 
 ## References
 

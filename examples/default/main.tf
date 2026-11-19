@@ -23,5 +23,6 @@ module "home_assistant" {
 
   # Storage
 
-  data_directory = "/data/home-assistant"
+  container_config_directory = "/config"
+  data_directory             = "/data/home-assistant"
 }
