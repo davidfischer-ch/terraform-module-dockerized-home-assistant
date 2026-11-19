@@ -1,5 +1,38 @@
 # Changelog
 
+
+## Release v1.0.4 (2026-11-19)
+
+Diff: https://github.com/davidfischer-ch/terraform-module-dockerized-home-assistant/compare/1.0.3...1.0.4
+
+### Features
+
+Server:
+
+* Add the `container_config_directory` input, where the configuration is mounted and which `CONFIG_DIRECTORY` names (default `/data/config`)
+
+CI:
+
+* Add CI: formatting, validation and the tests, in the GitHub workflow (with the newest Docker provider and its minimum) and in the GitLab pipeline
+
+### Fix and enhancements
+
+Server:
+
+* Set `CONFIG_DIRECTORY`, which a malformed environment entry left unset
+    * The container is replaced once on upgrade
+    * The official image reads `/config`: set `container_config_directory = "/config"` to mount the configuration there, after checking what that directory holds
+
+Requirements:
+
+* Require Terraform 1.17
+* Require the Docker provider 4.7.0
+
+Docs:
+
+* Point the README and the examples at this release
+
+
 ## Release v1.0.3 (2026-03-14)
 
 ### Fix and enhancements
