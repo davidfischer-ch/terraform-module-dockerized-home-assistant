@@ -6,6 +6,7 @@ Manage Home Assistant.
 * Persists configuration directory
 * Supports extra devices, groups, and volume mounts
 
+
 ## Usage
 
 See [examples/default](examples/default) for a complete working configuration.
@@ -35,6 +36,7 @@ module "home_assistant" {
 }
 ```
 
+
 ## Data layout
 
 All persistent data lives under `data_directory`:
@@ -43,6 +45,7 @@ All persistent data lives under `data_directory`:
 data_directory/
 └── config/  # Home Assistant configuration
 ```
+
 
 ## Variables
 
@@ -58,12 +61,14 @@ data_directory/
 | `data_directory` | `string` | — | Host path for persistent volumes. |
 | `extra_volumes` | `map(object)` | `{}` | Extra volumes to mount. |
 
+
 ## Outputs
 
 | Name | Description |
 |------|-------------|
 | `host` | Container hostname. |
 | `port` | Home Assistant port. |
+
 
 ## Requirements
 
